@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<math.h>
+
+
+int main()
+{
+
+	int a;//first term
+	int r;//common ratio
+	int n;//position of last term
+	      printf("\n Enter The First Term, Common Ratio, No. Of Terms \n ");
+	      scanf("%d %d %d",&a,&r,&n);
+
+	int sum=0;
+	      if(r>1)
+	         sum=a*(pow(r,n)-1)/(r-1);
+	      else
+	         sum=a*(1-pow(r,n))/(1-r);
+
+	printf(" The Sum Of The Geometric Progression Is: %d \n ",sum);
+
+	return 0;
+}
