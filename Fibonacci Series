@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+//fibonacci series
+
+void main()
+{
+  int n;
+    printf("Enter The Limit Until Which You Want The Series To Be Displayed: ");
+    scanf("%d",&n);
+        printf("0,1");
+   fib(n-2);
+}
+
+int fib(int n)
+{
+    static int fibn1=0,fibn2=1;
+    static int store_fib;
+     
+     if(n>0)
+      {
+          store_fib=fibn1+fibn2;
+          fibn1=fibn2;
+          fibn2=store_fib;
+            printf(",%d",fibn2);
+        fib(n-1);
+      }
+      
+  return 0;
+}
