@@ -1,0 +1,222 @@
+//1. ADDITION OF TWO MATRICES
+//2. SUBTRACTION OF TWO MATRICES
+//3. FINDING UPPER AND LOWER TRIANGULAR MATRICES
+//4. TRANSPOSE OF MATRIX
+//5. PRODUCT OF TWO MATRICES
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int ch, r, c, rows, columns, M1[10][10], M2[10][10], Add[10][10], Subtract[10][10];
+	int UpLow[10][10], Transpose_M1[10][10], Transpose_M2[10][10], Product[10][10];
+	     printf("\n MENU \n 1.Addition Of Two Matrices \n 2.Subtraction Of Two Matrices \n 3.Upper And Lower Triangular Matrix");
+         printf("\n 4.Transpose Of A Matrix \n 5.Product Of Two Matrices \n Enter your choice: ");
+                scanf("%d", &ch);
+
+       switch (ch)
+     {
+		case 1:
+			      printf("\n Enter Number of rows and columns: ");
+                        scanf("%d %d", &r, &c);
+
+                  printf("\n Enter the First Matrix Elements\n");
+			            for(rows = 0; rows < r; rows++)
+                           {
+                               for(columns = 0; columns < c; columns++)
+                                  {
+					                       scanf("%d", &M1[rows][columns]);
+				                  }
+                           }
+
+                  printf("\n Enter the Second Matrix Elements\n");
+                        for(rows = 0; rows < r; rows++)
+                           {
+                              for(columns = 0; columns < c; columns++)
+				                 {
+                                          scanf("%d", &M2[rows][columns]);
+				                 }
+			              }
+            for(rows = 0; rows < r; rows++)
+			   {
+                  for(columns = 0; columns < c; columns++)
+				     {
+					          Add[rows][columns] = M1[rows][columns] + M1[rows][columns];
+				     }
+			   }
+
+			      printf("\n The Sum Of Two Matrices: \n");
+			            for(rows = 0; rows < r; rows++)
+			               {
+				              for(columns = 0; columns < c; columns++)
+				                 {
+					                      printf("%d \t", Add[rows][columns]);
+				                 }
+                               printf("\n");
+                           }
+        break;
+
+		case 2:
+			      printf("\n Enter Number of rows and columns: ");
+                        scanf("%d %d", &r, &c);
+
+                  printf("\n Enter the First Matrix Elements\n");
+			            for(rows = 0; rows < r; rows++)
+                           {
+                               for(columns = 0; columns < c; columns++)
+                                  {
+					                       scanf("%d", &M1[rows][columns]);
+				                  }
+                           }
+
+                  printf("\n Enter the Second Matrix Elements\n");
+                        for(rows = 0; rows < r; rows++)
+                           {
+                              for(columns = 0; columns < c; columns++)
+				                 {
+                                          scanf("%d", &M2[rows][columns]);
+				                 }
+			              }
+            for(rows = 0; rows < r; rows++)
+			   {
+                  for(columns = 0; columns < c; columns++)
+				     {
+					          Subtract[rows][columns] = M1[rows][columns] - M2[rows][columns];
+				     }
+			   }
+
+			      printf("\n The Difference Of Two Matrices: \n");
+			            for(rows = 0; rows < r; rows++)
+			               {
+				              for(columns = 0; columns < c; columns++)
+				                 {
+					                      printf("%d \t", Subtract[rows][columns]);
+				                 }
+                               printf("\n");
+                           }
+        break;
+
+		case 3:
+                   printf("\n Enter Number Of Rows And Columns: ");
+                        scanf("%d %d", &r, &c);
+
+			       printf("\n Enter The Elements For The Matrix \n");
+                        for(rows = 0; rows < r; rows++)
+                           {
+				              for(columns = 0; columns < c; columns++)
+                                 {
+					                   scanf("%d", &UpLow[rows][columns]);
+				                 }
+			               }
+			       printf("\n The Upper Triangular Matrix Is: \n");
+                        for(rows = 0; rows < r; rows++)
+                           {
+				              printf("\n");
+				                   for(columns = 0; columns < c; columns++)
+                                      {
+					                       if (rows > columns)
+					                          {
+                                                 printf("0");
+						                         printf("\t");
+					                          }
+					                       else
+                                                {
+						                           printf("%d \t", UpLow[rows][columns]);
+					                            }
+				                      }
+                           }
+                   printf("\n The Lower Triangular Matrix Is: \n");
+			            for(rows = 0; rows < r; rows++)
+			               {
+				              printf("\n");
+				                   for(columns = 0; columns < c; columns++)
+                                      {
+                                           if(rows >= columns)
+                                             {
+                                                printf("%d \t ", UpLow[rows][columns]);
+					                         }
+					                       else
+					                            {
+                                                   printf("0");
+                                                   printf("\t");
+					                            }
+				                      }
+			              }
+		break;
+
+		case 4:
+			        printf("\n Enter Number Of Rows And Columns: ");
+			             scanf("%d %d", &r, &c);
+
+			        printf("\n Enter The  Elements For The Matrix \n");
+                         for(rows = 0; rows < r; rows++)
+			                 {
+				                for(columns = 0; columns < c; columns++)
+				                   {
+					                    scanf("%d", &Transpose_M1[rows][columns]);
+				                   }
+                             }
+                          for(rows = 0; rows < r; rows++)
+			                 {
+			                    for(columns = 0; columns < c; columns++)
+                                   {
+					                    Transpose_M2[columns][rows] = Transpose_M1[rows][columns];
+				                   }
+                             }
+			        printf("\n The TransposeD Matrix: \n");
+			             for (rows = 0; rows < c; rows++)
+			                 {
+				                for (columns = 0; columns < r; columns++)
+				                    {
+					                      printf("%d \t ", Transpose_M2[rows][columns]);
+				                    }
+                                printf("\n");
+			                 }
+		break;
+
+		case 5:
+			      printf("\n Enter Number Of Rows And Columns: ");
+                        scanf("%d %d", &r, &c);
+
+                  printf("\n Enter The First Matrix Elements\n");
+			            for(rows = 0; rows < r; rows++)
+                           {
+                               for(columns = 0; columns < c; columns++)
+                                  {
+					                       scanf("%d", &M1[rows][columns]);
+				                  }
+                           }
+
+                  printf("\n Enter The Second Matrix Elements\n");
+                        for(rows = 0; rows < r; rows++)
+                           {
+                              for(columns = 0; columns < c; columns++)
+				                 {
+                                          scanf("%d", &M2[rows][columns]);
+				                 }
+			              }
+            for(rows = 0; rows < r; rows++)
+			   {
+                  for(columns = 0; columns < c; columns++)
+				     {
+					          Product[rows][columns] = M1[rows][columns] * M2[rows][columns];
+				     }
+			   }
+
+			      printf("\n The Product Of Two Matrices: \n");
+			            for(rows = 0; rows < r; rows++)
+			               {
+				              for(columns = 0; columns < c; columns++)
+				                 {
+					                      printf("%d \t", Product[rows][columns]);
+				                 }
+                               printf("\n");
+                           }
+        break;
+
+        default: printf("\n WRONG CHOICE \n PLEASE TRY AGAIN!");
+
+     }
+
+}
