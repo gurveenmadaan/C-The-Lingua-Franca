@@ -200,7 +200,7 @@ int main()
 			   {
                   for(columns = 0; columns < c; columns++)
 				     {
-					          Add[rows][columns] = M1[rows][columns] * M2[rows][columns];
+					          Product[rows][columns] = M1[rows][columns] * M2[rows][columns];
 				     }
 			   }
 
@@ -215,8 +215,9 @@ int main()
                            }
         break;
 
-        default: "\n WRONG CHOICE \n PLEASE TRY AGAIN!";
+        default: printf("\n WRONG CHOICE \n PLEASE TRY AGAIN!");
 
      }
 
 }
+
