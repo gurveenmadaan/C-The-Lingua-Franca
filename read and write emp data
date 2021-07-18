@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+    FILE *fptr;
+
+        int i, n, empno;
+        float bpay, allow, ded;
+        char ename[50];
+
+            fptr = fopen("data.txt", "w");
+
+     printf("\n Enter The Number Of Employees : ");
+            scanf("%d", &n);
+
+    for(i=0; i<n; i++)
+      {
+          printf("\n Enter The Employee's Number : ");
+                 scanf("%d", &empno);
+          printf(" Enter The Employee's Name : ");
+                 scanf("%s", ename);
+          printf(" Enter The Employee's Basic Pay, Allowances & Deductions : ");
+                 scanf("%f %f %f", &bpay, &allow, &ded);
+
+            fprintf(fptr, "%d %s %f %f %f \n", empno,ename,bpay,allow,ded);
+      }
+
+	   fclose(fptr);
+
+         fptr = fopen("data.txt", "r");
+            printf("\n EMPLOYEE'S DETAILS:\n NUMBER:\tNAME:\t BASIC PAY:\t ALLOWANCE:\t DEDUCTIONS:\t NET PAY:");
+	  for(i = 0; i < n; i++)
+        {
+               fscanf(fptr,"%d%s%f%f%f\n", &empno,ename,&bpay,&allow,&ded);
+    	              printf("\n  %d\t        %s\t  %.2f\t   %.2f\t   %.2f\t %f", empno, ename, bpay, allow, ded, bpay+allow-ded);
+        }
+         
+         fclose(fptr);
+       getch();
+}
