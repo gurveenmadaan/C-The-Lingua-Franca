@@ -1,0 +1,376 @@
+#include <stdio.h>  // this is for the standard input and output functions.
+#include <time.h>   // this is for all the time() related functions.
+#include <stdlib.h> // this is for the system() function, srand() function and rand() function.
+char position[10] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+char player1[50], player2[50] = {'c', 'o', 'm'};
+
+void intro();
+void gameChoice();
+void greet();
+int generateRandomNumber(int);
+void gameBoard();
+void gameBuildForOnePlayer();
+int checkWinner();
+void gameBuildForTwoPlayers();
+void thanks();
+
+//*************************  FUNCTION 1 --> Introduction of the game  *************************
+
+void intro()
+{
+    printf("\n\t\t\t\t\t\t || Welcome To The TIC TAC TOE Game ||\n");
+}
+
+//*************************  FUNCTION 2 --> For the Game choice  *************************
+
+void gameChoice()
+{
+    int twoChoices = 0;
+    do
+    {
+        if (twoChoices != 0)
+        {
+            printf("\nInvalid choice... Enter Again!\n");
+        }
+
+        printf("\n\n--> 1 Player Game (PRESS 1)\n");
+        printf("\n--> 2 Player Game (PRESS 2)\n");
+        printf("\nYour choice:\n");
+        scanf("%d", &twoChoices);
+    } while (twoChoices != 1 && twoChoices != 2);
+
+    system("cls");
+    intro();
+    if (twoChoices == 1)
+    {
+        printf("\n\n\n--------------------------------------------------------\n");
+        printf("\nLet's start the game between You and Computer.\n");
+        printf("\n--------------------------------------------------------\n");
+        gameBuildForOnePlayer();
+    }
+    else
+    {
+        printf("\n\n\n--------------------------------------------------------\n");
+        printf("\nLet's start the game between You and Your Friend.\n");
+        printf("\n--------------------------------------------------------\n");
+
+        gameBuildForTwoPlayers();
+    }
+}
+
+//*************************  FUNCTION 3 --> For generating the time and also for greeting the user   *************************
+
+void greet()
+{
+
+    time_t t;
+    time(&t);
+    printf("\n\n\t\t\t\t\t\t\t%s", ctime(&t));
+    time_t s, val = 1;
+    struct tm *current_time;
+
+    // time in seconds
+    s = time(NULL);
+
+    // to get current time
+    current_time = localtime(&s);
+    if (current_time->tm_hour >= 5 && current_time->tm_hour < 12)
+    {
+        printf("\n\nA Very GOOD MORNING %s and %s.\n", player1, player2);
+    }
+    else if (current_time->tm_hour >= 12 && current_time->tm_hour < 17)
+    {
+        printf("\n\nGOOD AFTERNOON %s and %s.\n", player1, player2);
+    }
+    else if (current_time->tm_hour >= 17 && current_time->tm_hour < 21)
+    {
+        printf("\n\nGOOD EVENING %s and %s.\n", player1, player2);
+    }
+    else
+    {
+        printf("\n\nGOOD NIGHT %s and %s. \n,player1,player2");
+    }
+}
+
+//*************************  FUNCTION 4 --> Generating the random number  *************************
+
+int generateRandomNumber(int n)
+{
+    srand(time(NULL));
+    return rand() % n;
+}
+
+//*************************  FUNCTION 5 --> For the game board   *************************
+
+void gameBoard()
+{
+    system("cls");
+    intro();
+    greet();
+    printf("\n\t\n%s [O] & ", player1);
+    printf("%s [X]", player2);
+
+    printf("\n\n\n");
+    printf("  %c |  %c |  %c \n", position[1], position[2], position[3]);
+    printf(" ___|____|____\n");
+    printf("    |    |     \n");
+    printf("  %c |  %c |  %c \n", position[4], position[5], position[6]);
+    printf(" ___|____|____\n");
+    printf("    |    |     \n");
+    printf("  %c |  %c |  %c \n", position[7], position[8], position[9]);
+    printf("\n\n\n");
+}
+
+//*************************  FUNCTION 6 --> For calculating the winner   *************************
+
+int checkWinner()
+{
+
+    if (position[1] != '1' && position[2] != '2' && position[3] != '3' && position[4] != '4' && position[5] != '5' && position[6] != '6' && position[7] != '7' && position[8] != '8' && position[9] != '9')
+    {
+        return 0;
+    }
+    else if (position[1] == position[2] && position[2] == position[3])
+    {
+        return 1;
+    }
+    else if (position[1] == position[4] && position[4] == position[7])
+    {
+        return 1;
+    }
+    else if (position[3] == position[6] && position[6] == position[9])
+    {
+        return 1;
+    }
+    else if (position[4] == position[5] && position[5] == position[6])
+    {
+        return 1;
+    }
+    else if (position[7] == position[8] && position[8] == position[9])
+    {
+        return 1;
+    }
+    else if (position[1] == position[5] && position[5] == position[9])
+    {
+        return 1;
+    }
+    else if (position[3] == position[5] && position[5] == position[7])
+    {
+        return 1;
+    }
+
+    else
+    {
+        return -1;
+    }
+}
+
+//*************************  FUNCTION 7 -->  game build for one player Game   *************************
+
+void gameBuildForOnePlayer()
+{
+    int winValue = 0, playersChoice, playerValue = 1;
+    char mark;
+
+    printf("\n\nPlayer 1 please enter your name:\n");
+    fflush(stdin);
+    gets(player1);
+
+    fflush(stdin);
+    do
+    {
+        gameBoard();
+        playerValue = (playerValue % 2) ? 1 : 2;
+
+        printf("\n------------------------------\n");
+        mark = (playerValue == 1) ? 'O' : 'X';
+        if (playerValue == 1)
+        {
+            printf("%s, please enter your choice:\n", player1);
+            scanf("%d", &playersChoice);
+        }
+
+        else
+        {
+            playersChoice = generateRandomNumber(9) + 1;
+            printf("Computer Choose :\n%d\n", playersChoice);
+        }
+
+        if (playersChoice == 1 && position[1] == '1')
+        {
+            position[1] = mark;
+        }
+        else if (playersChoice == 2 && position[2] == '2')
+        {
+            position[2] = mark;
+        }
+        else if (playersChoice == 3 && position[3] == '3')
+        {
+            position[3] = mark;
+        }
+        else if (playersChoice == 4 && position[4] == '4')
+        {
+            position[4] = mark;
+        }
+        else if (playersChoice == 5 && position[5] == '5')
+        {
+            position[5] = mark;
+        }
+        else if (playersChoice == 6 && position[6] == '6')
+        {
+            position[6] = mark;
+        }
+        else if (playersChoice == 7 && position[7] == '7')
+        {
+            position[7] = mark;
+        }
+        else if (playersChoice == 8 && position[8] == '8')
+        {
+            position[8] = mark;
+        }
+        else if (playersChoice == 9 && position[9] == '9')
+        {
+            position[9] = mark;
+        }
+        else
+        {
+            printf("Invalid Option!\n");
+            playerValue--;
+            getchar();
+        }
+
+        getchar();
+        winValue = checkWinner();
+        playerValue++;
+
+    } while (winValue == -1);
+
+    gameBoard();
+
+    if (winValue == 1)
+    {
+        if (playerValue - 1 == 1)
+        {
+            printf("\nCONGRATS %s! You won the game.\n", player1);
+        }
+        else
+        {
+            printf("\nOops! Com won the game.\n");
+        }
+    }
+    else
+    {
+        printf("Game is draw.\n");
+    }
+    thanks();
+}
+
+//*************************  FUNCTION 8 -->  game build for two player Game   *************************
+
+void gameBuildForTwoPlayers()
+{
+    int winValue = 0, playersChoice, playerValue = 1;
+    char mark;
+
+    printf("\n\nPlayer 1 please enter your name:\n");
+    fflush(stdin);
+    gets(player1);
+
+    printf("\n\nPlayer 2 please enter your name:\n");
+    gets(player2);
+
+    fflush(stdin);
+    do
+    {
+
+        gameBoard();
+        playerValue = (playerValue % 2) ? 1 : 2;
+
+        printf("\n------------------------------\n");
+        (playerValue == 1) ? printf("%s, please enter your choice:\n", player1) : printf("%s, please enter your choice:\n", player2);
+        scanf("%d", &playersChoice);
+
+        mark = (playerValue == 1) ? 'O' : 'X';
+
+        if (playersChoice == 1 && position[1] == '1')
+        {
+            position[1] = mark;
+        }
+        else if (playersChoice == 2 && position[2] == '2')
+        {
+            position[2] = mark;
+        }
+        else if (playersChoice == 3 && position[3] == '3')
+        {
+            position[3] = mark;
+        }
+        else if (playersChoice == 4 && position[4] == '4')
+        {
+            position[4] = mark;
+        }
+        else if (playersChoice == 5 && position[5] == '5')
+        {
+            position[5] = mark;
+        }
+        else if (playersChoice == 6 && position[6] == '6')
+        {
+            position[6] = mark;
+        }
+        else if (playersChoice == 7 && position[7] == '7')
+        {
+            position[7] = mark;
+        }
+        else if (playersChoice == 8 && position[8] == '8')
+        {
+            position[8] = mark;
+        }
+        else if (playersChoice == 9 && position[9] == '9')
+        {
+            position[9] = mark;
+        }
+        else
+        {
+            printf("Invalid Option!\n");
+            playerValue--;
+            getchar();
+        }
+
+        getchar();
+        winValue = checkWinner();
+        playerValue++;
+
+    } while (winValue == -1);
+
+    gameBoard();
+
+    if (winValue == 1)
+    {
+        printf(" CONGRATS ");
+        (playerValue - 1 == 1) ? printf("%s!", player1) : printf("%s!", player2);
+        printf(" You won the game.\n");
+    }
+    else
+    {
+        printf("Game is draw.\n");
+    }
+    thanks();
+}
+
+//*************************  FUNCTION 9 --> For thanks the user for playing the game   *************************
+
+void thanks()
+{
+    printf("\n\t\t\t\t\t\t || THANKS FOR PLAYING OUR GAME %s and %s. ||\t\t\t\t\t", player1, player2);
+}
+
+//*************************  FUNCTION 10 --> Driver Function   *************************
+
+int main()
+{
+
+    intro();
+    gameChoice();
+    getchar();
+    return 0;
+}
